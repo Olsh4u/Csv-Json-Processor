@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.olsh4u.infomaximum'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    implementation "com.opencsv:opencsv:${opencsvVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}

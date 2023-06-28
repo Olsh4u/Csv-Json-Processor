@@ -43,7 +43,7 @@ public class FileProcessor {
         objectStats.printSummaryStatistics();
     }
 
-    void processCsvFile(String filePath) {
+    protected void processCsvFile(String filePath) {
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             reader.readNext();// to skip the first line with headers
             String[] line;
@@ -63,7 +63,7 @@ public class FileProcessor {
     }
 
 
-    public void processJsonFile(String filePath) {
+    protected void processJsonFile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             JsonFactory jsonFactory = new JsonFactory();
             JsonParser jsonParser = jsonFactory.createParser(reader);
@@ -116,7 +116,7 @@ public class FileProcessor {
         return "";
     }
 
-    boolean checkFileExistence(String filePath) {
+    protected boolean checkFileExistence(String filePath) {
         Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
             System.out.println("File does not exist: " + filePath);

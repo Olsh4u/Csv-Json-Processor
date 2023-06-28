@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
+import java.nio.file.Path;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,11 +32,20 @@ public class FileProcessorTest {
 
     @Test
     void processFile_withUnsupportedFileFormat_printsErrorMessage() {
-        String filePath = "test.txt";
-        fileProcessor.processFile(filePath);
-
+        File fileName = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("test.txt")).getFile());
+        fileProcessor.processFile(fileName.getPath());
         String expectedErrorMessage = "Unsupported file format: txt JSON or CSV required";
         assertTrue(outputStream.toString().contains(expectedErrorMessage));
+    }
+
+    @Test
+    void checkFileExistence_existingFile_returnsTrue() {
+        String filePath = "path/to/existing/file.txt";
+        FileProcessor fileProcessor = new FileProcessor();
+
+        boolean result = fileProcessor.checkFileExistence(filePath);
+
+        assertFalse(result);
     }
 
 }

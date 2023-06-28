@@ -116,7 +116,7 @@ public class FileProcessor {
         return "";
     }
 
-    private boolean checkFileExistence(String filePath) {
+    boolean checkFileExistence(String filePath) {
         Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
             System.out.println("File does not exist: " + filePath);
@@ -124,5 +124,6 @@ public class FileProcessor {
         }
         return true;
     }
+
 
 }

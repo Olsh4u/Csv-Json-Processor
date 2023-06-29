@@ -6,13 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ObjectStats {
-    private  Map<String, Integer> duplicates;
-    private  Map<String, BigDecimal> groupWeights;
+    private Map<String, Integer> duplicates;
+    private Map<String, BigDecimal> groupWeights;
     private BigDecimal minWeight;
     private BigDecimal maxWeight;
-    protected static Long countOfElements = 0L;
-
-    private boolean isShouldPrinted = true;
+    private long countOfElements = 0L;
 
     public ObjectStats() {
         duplicates = new HashMap<>();
@@ -51,6 +49,10 @@ public class ObjectStats {
         System.out.println("Maximum weight: " + maxWeight);
     }
 
+    public void incrementCountOfElements() {
+        countOfElements++;
+    }
+
 
     public Map<String, Integer> getDuplicates() {
         return duplicates;
@@ -84,20 +86,6 @@ public class ObjectStats {
         this.maxWeight = maxWeight;
     }
 
-    public boolean isShouldPrinted() {
-        return isShouldPrinted;
-    }
 
-    public void setShouldPrinted(boolean shouldPrinted) {
-        isShouldPrinted = shouldPrinted;
-    }
-
-    public static Long getCountOfElements() {
-        return countOfElements;
-    }
-
-    public static void setCountOfElements(Long countOfElements) {
-        ObjectStats.countOfElements = countOfElements;
-    }
 }
 

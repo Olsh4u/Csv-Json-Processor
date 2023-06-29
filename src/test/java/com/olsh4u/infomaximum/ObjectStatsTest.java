@@ -69,15 +69,17 @@ public class ObjectStatsTest {
 
         objectStats.printSummaryStatistics();
 
-        String expectedOutput = "Duplicate objects:\n" +
-                "Group: Group1 | Type: Type1 | Duplicates: 2\n" +
-                "Group: Group1 | Type: Type2 | Duplicates: 3\n" +
-                "Group weights:\n" +
-                "Group: Group1 | Weight: 10.5\n" +
-                "Group: Group2 | Weight: 15.2\n" +
-                "Group: Group3 | Weight: 7.8\n" +
-                "Minimum weight: 5.2\n" +
-                "Maximum weight: 18.6\n";
+        String expectedOutput = """
+                Duplicate objects:
+                Group: Group1 | Type: Type1 | Duplicates: 2
+                Group: Group1 | Type: Type2 | Duplicates: 3
+                Group weights:
+                Group: Group1 | Weight: 10.5
+                Group: Group2 | Weight: 15.2
+                Group: Group3 | Weight: 7.8
+                Minimum weight: 5.2
+                Maximum weight: 18.6
+                """;
 
         assertEquals(expectedOutput, outputStream.toString());
     }

@@ -31,11 +31,9 @@ public class FileProcessor {
 
         if (fileExtension.equalsIgnoreCase("csv")) {
             processCsvFile(filePath);
-        }
-        else if (fileExtension.equalsIgnoreCase("json")) {
+        } else if (fileExtension.equalsIgnoreCase("json")) {
             processJsonFile(filePath);
-        }
-        else {
+        } else {
             System.out.println("Unsupported file format: " + fileExtension + " JSON or CSV required");
             return;
         }
@@ -50,7 +48,7 @@ public class FileProcessor {
             while ((line = reader.readNext()) != null) {
                 try {
                     processCsvObjectLine(line);
-                    ObjectStats.countOfElements++;
+                    objectStats.incrementCountOfElements();
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid number format in the CSV file: " + e.getMessage());
                 }
@@ -71,7 +69,7 @@ public class FileProcessor {
             while (jsonParser.nextToken() == JsonToken.START_ARRAY) {
                 while (jsonParser.nextToken() != JsonToken.END_ARRAY) {
                     processJsonObject(jsonParser);
-                    ObjectStats.countOfElements++;
+                    objectStats.incrementCountOfElements();
                 }
             }
         } catch (IOException e) {
@@ -107,6 +105,7 @@ public class FileProcessor {
         }
         objectStats.processObject(group, type, number, weight);
     }
+
     private String getFileExtension(Path path) {
         String fileName = path.getFileName().toString();
         int dotIndex = fileName.lastIndexOf(".");
